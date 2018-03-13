@@ -1,0 +1,11 @@
+.select {
+    text-align: center;
+    margin: 0;
+    width: 250px;
+  }
+
+.center {
+    margin: auto;
+    padding: 50px;
+    width: 30%;
+}
