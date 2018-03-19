@@ -1,32 +1,16 @@
-.button {
-  padding: 10px 10px;
-  font-size: 15px;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-  color: #fff;
-  background-color: #4CAF50;
-  border: none;
+
+
+
+.box {
   border-radius: 15px;
-  box-shadow: 0 9px #999;
-}
-
-.form {
-  padding: 20px;
-  margin: 0 auto;
-  width: 250px;
+  width: 50%;
 }
 
 
-
-.dropdown {
+.list {
   text-align:center;
 }
 
-.button:hover {background-color: #3e8e41}
-
-.button:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+.inputBox {
+  margin-top: 20px;
 }

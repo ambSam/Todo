@@ -10,14 +10,18 @@ const initialState = {
 export const reducer = (state=initialState, action) => {
     switch (action.type) {
         case actionTypes.ADDTASK:
+        if(action.eventValue.key === 'Enter')
+        {
+            console.log('Enter key pressed')
             return {
                 ...state,
-                eventValue:action.value
+                taskList:state.taskList.concat(action.value)
             }
+        }
 
         case actionTypes.DELETETASK:
             const updatedTaskList= state.taskList.filter(task=>(
-                state.deletedTask!==task
+                action.value!==task
             ))
             return {
                 ...state,
@@ -29,13 +33,7 @@ export const reducer = (state=initialState, action) => {
                 ...state,
                 deletedTask: action.value
             }
-
-        case actionTypes.SUBMITTASK:
-            action.value.preventDefault();
-            return {
-                ...state,
-                taskList: state.taskList.concat(state.eventValue)
-            }
+            
 
         default :
             return state

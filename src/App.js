@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Dropdown from './components/Dropdown';
+import List from './components/List';
 import { connect } from 'react-redux';
 import * as actionTypes from './store/actions';
-import PrimaryButton from './UI/PrimaryButton';
 import AppBarExampleIcon from './UI/AppBar';
 
 class App extends Component {
@@ -12,14 +11,15 @@ class App extends Component {
     return (
       <div>
         <AppBarExampleIcon />
-          <form className='form'>
-            <label> Task  </label>
-            <input type='text' onChange={(event) => this.props.addTask(event)} className='task' placeholder='Enter the task' />
-            <br />
-            <PrimaryButton submitTask={this.props.submitTask}>Add Task</PrimaryButton>
-          </form>
-          <Dropdown className='dropdown' taskLists={this.props.tL} deleteTask={this.props.deleteTask}
-            getSelectedValue={(event) => this.props.getTask(event)} />
+            <div className = 'row justify-content-center align-items-center inputBox'>
+              <div className = 'col offset-4'>
+                <input type='text' onKeyPress={(event) => this.props.addTask(event)} 
+                                   className='form-control box' 
+                                   placeholder='Enter the task' />  
+              </div>
+            </div>
+            <br />            
+          <List className='list' taskLists={this.props.tL} deleteTask={(event)=> this.props.deleteTask(event)}/>
       </div>
     );
   }
@@ -34,10 +34,10 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    addTask: (event) => { dispatch({ type: actionTypes.ADDTASK, value: event.target.value }) },
-    deleteTask: (event) => { dispatch({ type: actionTypes.DELETETASK, value: event.target.value }) },
+    addTask: (event) => { dispatch({ type: actionTypes.ADDTASK, value: event.target.value, eventValue:event }) },
+    deleteTask: (event) => { dispatch({ type: actionTypes.DELETETASK, value: event.target.dataset.value }) },
     getTask: (event) => { dispatch({ type: actionTypes.GETTASK, value: event.target.value }) },
-    submitTask: (event) => { dispatch({ type: actionTypes.SUBMITTASK, value: event }) }
+    //submitTask: (event) => { dispatch({ type: actionTypes.SUBMITTASK, value: event }) }
   }
 }
 
